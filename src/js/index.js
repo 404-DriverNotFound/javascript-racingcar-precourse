@@ -7,23 +7,23 @@ import { printRaceResult, printWinners, getMaxMoves } from './gameUtils.js';
 export default function RacingCarGame() {
   this.cars = [];
 
-  function makeRaceResult(count) {
+  function makeRaceResult(cars, count) {
     while (count) {
-      this.cars.forEach((car) => car.moveOneTime());
-      printRaceResult(this.cars);
+      cars.forEach((car) => car.moveOneTime());
+      printRaceResult(cars);
       count -= 1;
     }
   }
 
-  function chooseWinner() {
-    const max = getMaxMoves(this.cars);
-    const winners = this.cars.filter((car) => car.moves === max);
+  function chooseWinner(cars) {
+    const max = getMaxMoves(cars);
+    const winners = cars.filter((car) => car.moves === max);
     printWinners(winners);
   }
 
   this.runGame = (count) => {
-    makeRaceResult(count);
-    chooseWinner();
+    makeRaceResult(this.cars, count);
+    chooseWinner(this.cars);
   };
 }
 
