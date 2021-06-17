@@ -2,6 +2,7 @@
 import Car from './Car.js';
 
 const $namesInput = document.getElementById('car-names-input');
+const $countInput = document.getElementById('racing-count-input');
 
 export function makeCarNames() {
   return $namesInput.value.split(',').map((carName) => carName.trim());
@@ -14,4 +15,12 @@ export function isValidNames(names) {
 
 export function makeCars(names) {
   return names.map((carName) => new Car(carName));
+}
+
+export function getCount() {
+  return Number($countInput.value);
+}
+
+export function isValidCount(count) {
+  return !Number.isNaN(count) && count > 0 && count % 1 === 0;
 }

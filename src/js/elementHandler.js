@@ -1,4 +1,5 @@
 const $countDiv = document.getElementById('racing-count-container');
+const $resultDiv = document.getElementById('result-container');
 
 function toggleElement(element) {
   element.classList.toggle('hidden');
@@ -25,5 +26,13 @@ export function hideCountDiv() {
 }
 
 export function showResultDiv() {
-  // TODO: resultDiv 보이기
+  showElement($resultDiv);
+}
+
+export function hideResultDiv() {
+  hideElement($resultDiv);
+}
+
+export function initResultDiv() {
+  // TODO: resultDiv 초기화 기능
 }

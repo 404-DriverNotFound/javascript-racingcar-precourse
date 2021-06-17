@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import { handleNameError, handleCountError } from './handleErrors.js';
 import * as inputHandler from './inputHandler.js';
-import * as elementHandler from './elementHandler.js';
+import { showCountDiv, showResultDiv } from './elementHandler.js';
 
 function handleNamesInput(gameObj) {
   const names = inputHandler.makeCarNames();
@@ -11,16 +11,23 @@ function handleNamesInput(gameObj) {
     return;
   }
   gameObj.cars = inputHandler.makeCars(names);
-  elementHandler.showCountDiv();
+  showCountDiv();
 }
 
-function handleCountInput() {
-  // TODO: count click 이벤트 처리
+function handleCountInput(gameObj) {
+  const count = inputHandler.getCount();
+  if (!inputHandler.isValidCount(count)) {
+    handleCountError(gameObj);
+    return;
+  }
+  // TODO: 게임 실행
+  showResultDiv();
 }
 
 export default function setEventListener(gameObj) {
   const $namesButton = document.getElementById('car-names-submit');
+  const $countButton = document.getElementById('racing-count-submit');
 
   $namesButton.addEventListener('click', () => handleNamesInput(gameObj));
-  // TODO: count click 이벤트 처리
+  $countButton.addEventListener('click', () => handleCountInput(gameObj));
 }
