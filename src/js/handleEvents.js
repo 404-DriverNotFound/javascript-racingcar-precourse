@@ -1,27 +1,32 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
+import { initMoves } from './Car.js';
 import { handleNameError, handleCountError } from './handleErrors.js';
 import * as inputHandler from './inputHandler.js';
-import { showCountDiv, showResultDiv } from './elementHandler.js';
+import * as elementHandler from './elementHandler.js';
 
 function handleNamesInput(gameObj) {
+  elementHandler.hideResultDiv();
   const names = inputHandler.makeCarNames();
   if (!inputHandler.isValidNames(names)) {
     handleNameError(gameObj);
     return;
   }
   gameObj.cars = inputHandler.makeCars(names);
-  showCountDiv();
+  elementHandler.showCountDiv();
 }
 
 function handleCountInput(gameObj) {
+  elementHandler.initResultDiv();
+  initMoves(gameObj.cars);
   const count = inputHandler.getCount();
   if (!inputHandler.isValidCount(count)) {
+    elementHandler.hideResultDiv();
     handleCountError(gameObj);
     return;
   }
-  // TODO: 게임 실행
-  showResultDiv();
+  elementHandler.showResultDiv();
+  gameObj.runGame(count);
 }
 
 export default function setEventListener(gameObj) {

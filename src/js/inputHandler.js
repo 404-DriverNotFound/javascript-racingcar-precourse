@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import Car from './Car.js';
+import { Car } from './Car.js';
 
 const $namesInput = document.getElementById('car-names-input');
 const $countInput = document.getElementById('racing-count-input');
