@@ -1,7 +1,5 @@
-export default function RacingCarGame() {
-}
-// export default class RacingCarGame {
-// }
+// eslint-disable-next-line import/extensions
+import RacingCarGame from './RacingCarGame.js';
 
-
-new RacingCarGame();
+const game = new RacingCarGame();
+game.addEventListener();
