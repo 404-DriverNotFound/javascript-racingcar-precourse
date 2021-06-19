@@ -25,8 +25,8 @@ export default function RacingCarGame() {
     makeRaceResult(this.cars, count);
     chooseWinner(this.cars);
   };
+
+  setEventListener(this);
 }
 
-const init = (game) => setEventListener(game);
-
-init(new RacingCarGame());
+new RacingCarGame();
