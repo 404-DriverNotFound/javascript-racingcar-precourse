@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 function canGoForward() {
-  return Math.floor(Math.random() * 10) % 10 > 3;
+  return Math.floor(Math.random() * 10) > 3;
 }
 
 export default function Car(name) {
