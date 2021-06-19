@@ -3,13 +3,7 @@ function canGoForward() {
   return Math.floor(Math.random() * 10) % 10 > 3;
 }
 
-export function initMoves(cars) {
-  cars.forEach((car) => {
-    car.moves = 0;
-  });
-}
-
-export function Car(name) {
+export default function Car(name) {
   this.name = name;
   this.moves = 0;
 

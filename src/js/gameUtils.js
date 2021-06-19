@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const $resultContent = document.getElementById('result-content');
 
 function printRaceResult(cars) {
@@ -35,4 +36,10 @@ export function chooseWinner(cars) {
   const max = getMaxMoves(cars);
   const winners = cars.filter((car) => car.moves === max);
   printWinners(winners);
+}
+
+export function initMoves(cars) {
+  cars.forEach((car) => {
+    car.moves = 0;
+  });
 }

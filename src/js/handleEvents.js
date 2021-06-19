@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
-import { initMoves } from './Car.js';
+import { initMoves } from './gameUtils.js';
 import { handleNameError, handleCountError } from './handleErrors.js';
 import * as inputHandler from './handleInputs.js';
 import * as elementHandler from './handleElements.js';
