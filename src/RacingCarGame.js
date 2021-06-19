@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/extensions
+import Car from './Car.js';
+
 function isValidCarNames(carNames) {
   if (carNames === '') {
     return false;
@@ -16,6 +19,7 @@ export default class RacingCarGame {
     this.$carNamesInput = document.querySelector('#car-names-input');
     this.$racingCountInput = document.querySelector('#racing-count-input');
     this.$result = document.querySelectorAll('div');
+    this.cars = [];
   }
 
   addEventListener() {
@@ -29,10 +33,15 @@ export default class RacingCarGame {
   }
 
   onClickCarNamesSubmit() {
+    this.cars.length = 0;
     const carNames = this.$carNamesInput.value;
     if (isValidCarNames(carNames)) {
+      const carNamesArr = carNames.split(',');
+      carNamesArr.forEach((carName) => {
+        this.cars.push(new Car(carName));
+      });
       // eslint-disable-next-line no-alert
-      alert('제대로 입력했군!');
+      alert('정상적으로 입력되었습니다.');
     } else {
       // eslint-disable-next-line no-alert
       alert('제대로 입력하라');
@@ -42,7 +51,7 @@ export default class RacingCarGame {
   onClickRacingCountSubmit() {
     const racingCount = this.$racingCountInput.value;
     if (racingCount > 0) {
-      this.renderResult();
+      this.renderResult(racingCount);
     } else {
       // eslint-disable-next-line no-alert
       alert('제대로 입력하라');
