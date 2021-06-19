@@ -15,6 +15,7 @@ export default class RacingCarGame {
     this.$carGameContainer = document.querySelector('.car-game-container');
     this.$carNamesInput = document.querySelector('#car-names-input');
     this.$racingCountInput = document.querySelector('#racing-count-input');
+    this.$result = document.querySelectorAll('div');
   }
 
   addEventListener() {
@@ -41,11 +42,16 @@ export default class RacingCarGame {
   onClickRacingCountSubmit() {
     const racingCount = this.$racingCountInput.value;
     if (racingCount > 0) {
-      // eslint-disable-next-line no-alert
-      alert('제대로 입력했군!');
+      this.renderResult();
     } else {
       // eslint-disable-next-line no-alert
       alert('제대로 입력하라');
     }
+  }
+
+  renderResult() {
+    let result = '<h4>📄 실행 결과</h4>';
+    result += '결과 내용';
+    this.$result[this.$result.length - 1].innerHTML = result;
   }
 }
