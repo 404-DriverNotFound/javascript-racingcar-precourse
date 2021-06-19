@@ -50,17 +50,52 @@ export default class RacingCarGame {
 
   onClickRacingCountSubmit() {
     const racingCount = this.$racingCountInput.value;
-    if (racingCount > 0) {
+    if (this.cars.length !== 0 && racingCount > 0) {
       this.renderResult(racingCount);
+      this.cars.forEach((elem) => elem.setResult(''));
     } else {
       // eslint-disable-next-line no-alert
       alert('제대로 입력하라');
     }
   }
 
-  renderResult() {
+  renderResult(racingCount) {
+    let cnt = racingCount;
     let result = '<h4>📄 실행 결과</h4>';
-    result += '결과 내용';
+    while (cnt) {
+      result += `<p>${this.getResult()}</p>`;
+      result += '<br/>';
+      cnt -= 1;
+    }
+    result += `<p>최종 우승자: ${this.getWinner()}</p>`;
     this.$result[this.$result.length - 1].innerHTML = result;
+  }
+
+  getResult() {
+    let result = '';
+    this.cars.forEach((elem) => {
+      elem.setDigit(Math.floor(Math.random() * 10));
+      if (elem.getDigit() >= 4) {
+        elem.addResult('-');
+      }
+      result += `<p>${elem.getName()}: ${elem.getResult()}</p>`;
+    });
+    return result;
+  }
+
+  getWinner() {
+    const ret = [];
+    let winnerLength = 0;
+    this.cars.forEach((elem) => {
+      if (elem.getResult().length > winnerLength) {
+        winnerLength = elem.getResult().length;
+      }
+    });
+    this.cars.forEach((elem) => {
+      if (elem.getResult().length === winnerLength) {
+        ret.push(elem.getName());
+      }
+    });
+    return ret.join(', ');
   }
 }
