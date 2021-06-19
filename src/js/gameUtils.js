@@ -1,6 +1,6 @@
 const $resultContent = document.getElementById('result-content');
 
-export function printRaceResult(cars) {
+function printRaceResult(cars) {
   const $resultPerOnePlay = document.createElement('div');
   cars.forEach((car) => {
     const $carInfo = document.createElement('span');
@@ -12,12 +12,27 @@ export function printRaceResult(cars) {
   $resultContent.appendChild($resultPerOnePlay);
 }
 
-export function printWinners(winners) {
+function printWinners(winners) {
   const $result = document.createElement('p');
   $result.innerText = `최종 우승자: ${winners.map((car) => car.name).join(', ')}`;
   $resultContent.appendChild($result);
 }
 
-export function getMaxMoves(cars) {
+function getMaxMoves(cars) {
   return cars.reduce((acc, cur) => (cur.moves > acc ? cur.moves : acc), 0);
+}
+
+export function makeRaceResult(cars, originCount) {
+  let count = originCount;
+  while (count) {
+    cars.forEach((car) => car.moveOneTime());
+    printRaceResult(cars);
+    count -= 1;
+  }
+}
+
+export function chooseWinner(cars) {
+  const max = getMaxMoves(cars);
+  const winners = cars.filter((car) => car.moves === max);
+  printWinners(winners);
 }
