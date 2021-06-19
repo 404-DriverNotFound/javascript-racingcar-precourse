@@ -2,8 +2,8 @@
 /* eslint-disable import/extensions */
 import { initMoves } from './Car.js';
 import { handleNameError, handleCountError } from './handleErrors.js';
-import * as inputHandler from './inputHandler.js';
-import * as elementHandler from './elementHandler.js';
+import * as inputHandler from './handleInputs.js';
+import * as elementHandler from './handleElements.js';
 
 function handleNamesInput(gameObj) {
   elementHandler.hideResultDiv();

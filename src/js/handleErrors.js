@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-alert */
 /* eslint-disable no-param-reassign */
-import { hideCountDiv, hideResultDiv } from './elementHandler.js';
+import { hideCountDiv, hideResultDiv } from './handleElements.js';
 
 export function handleNameError(gameObj) {
   hideCountDiv();
