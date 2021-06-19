@@ -1,5 +1,8 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-param-reassign */
-const $resultContent = document.getElementById('result-content');
+import { RESULT_CONTENT } from './constants.js';
+
+const $resultContent = document.getElementById(RESULT_CONTENT);
 
 function printRaceResult(cars) {
   const $resultPerOnePlay = document.createElement('div');
@@ -42,4 +45,13 @@ export function initMoves(cars) {
   cars.forEach((car) => {
     car.moves = 0;
   });
+}
+
+export function isValidNames(names) {
+  const set = new Set(names.filter((carName) => carName.length > 0 && carName.length < 6));
+  return set.size === names.length;
+}
+
+export function isValidCount(count) {
+  return !Number.isNaN(count) && count > 0 && count % 1 === 0;
 }
